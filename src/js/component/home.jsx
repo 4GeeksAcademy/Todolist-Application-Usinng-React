@@ -1,48 +1,59 @@
 import React, { useState } from "react";
 
-
 //create your first component
 const Home = () => {
-	const [task, setTask] = useState('');
+	const [task, setTask] = useState("");
 	const [tasksList, setTasksList] = useState([]);
 
 	const handleTask = (e) => {
 		if (e.key == "Enter") {
-			setTasksList([...tasksList,
-			{
-				label: task,
-				done: false,
-
-			}])
+			setTasksList([...tasksList, { label: task, done: false }]);
 		}
 
 		setTask(e.target.value);
-	}
+	};
 
-	return (<>
-		<h1 className="d-flex justify-content-center my-4">To do List {task}</h1>
 
-		<div className="caja" style={{ width: "55%", margin: "auto" }}>
+	const deleteItems = (label) => {
 
-			<div className="" >
-				<input className="border border-0 caja  py-3 px-3 " type="text" placeholder="Task"
-					onKeyUp={(evt) => handleTask(evt)} />
-			</div>
+		const taskFiltered = tasksList.filter(item => item.label != label)
+		setTasksList(taskFiltered)
 
-			{tasksList.map((item, index) => {
-				return <div className="caja" key={index}>
-					<div className="margen" >
-						<p className="px-4 py-3 m-0 ">{item.label}</p>
-					</div>
+	};
+
+
+	return (
+		<>
+			<h1 className="d-flex justify-content-center my-4 titulo">To do List {task}</h1>
+
+			<div className="caja" style={{ width: "55%", margin: "auto" }}>
+				<div className="">
+					<input
+						className="border border-0 caja   py-3 px-3 "
+						type="text"
+						placeholder="What needs to be done?"
+						onKeyUp={(evt) => handleTask(evt)}
+					/>
 				</div>
-			})}
-			<div className="border-top px-4 py-3 m-0">
-				<span className="">Item left</span>
-			</div>
-		</div>
-	</>
 
-	)
+				{tasksList.map((item, index) => {
+					return (
+						<div className="caja" key={index}>
+							<div className="margen d-flex">
+								<p className="px-4 py-3 m-0 ">{item.label}</p>
+								<p
+									onClick={() => deleteItems(item.label)}
+									className="text-danger d-flex align-items-center m-3 anm">X</p>
+							</div>
+						</div>
+					);
+				})}
+				<div className="border-top px-4 py-3 m-0 ">
+					<span className="itm">{tasksList.length > 1 ? tasksList.length + " " + "Tasks left" : tasksList.length + " " + "Task left" }</span>
+				</div>
+			</div>
+		</>
+	);
 };
 
 export default Home;
