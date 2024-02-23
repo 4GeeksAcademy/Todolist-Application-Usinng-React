@@ -36,7 +36,14 @@ input {
 }
 
 .sombra {
-    -webkit-box-shadow: -12px 11px 5px -5px rgba(0,0,0,0.75);
--moz-box-shadow: -12px 11px 5px -5px rgba(0,0,0,0.75);
-box-shadow: -12px 11px 5px -5px rgba(0,0,0,0.75);
+  -webkit-box-shadow: -12px 11px 5px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -12px 11px 5px -5px rgba(0, 0, 0, 0.75);
+  box-shadow: -12px 11px 5px -5px rgba(0, 0, 0, 0.75);
+}
+.delete {
+  display: none;
+}
+.caja:hover > .margen > .delete {
+  display: block;
+  transition: all 2s ease-in-out;
 }

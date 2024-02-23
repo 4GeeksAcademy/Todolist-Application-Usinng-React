@@ -43,11 +43,14 @@ const Home = () => {
 				{tasksList.map((item, index) => {
 					return (
 						<div className="caja" key={index}>
-							<div className="margen d-flex">
+							<div className="margen d-flex ">
 								<p className="px-4 py-3 m-0 ">{item.label}</p>
+								<div className="delete">
 								<p
 									onClick={() => deleteItems(item.label)}
-									className="text-danger d-flex align-items-center m-3 anm">X</p>
+									className="text-danger d-flex align-items-center m-3 anm">X
+								</p>
+								</div>
 							</div>
 						</div>
 					);
