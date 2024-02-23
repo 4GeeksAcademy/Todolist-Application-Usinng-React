@@ -7,34 +7,38 @@ const Home = () => {
 
 	const handleTask = (e) => {
 		if (e.key == "Enter") {
-			setTasksList([...tasksList, { label: task, done: false }]);
-		}
+		setTasksList([...tasksList, { label: task, done: false }]);
+		setTask("");
+		 } 
+		
 
-		setTask(e.target.value);
+		
+
 	};
-
 
 	const deleteItems = (label) => {
 
 		const taskFiltered = tasksList.filter(item => item.label != label)
 		setTasksList(taskFiltered)
-
 	};
-
 
 	return (
 		<>
 			<h1 className="d-flex justify-content-center my-4 titulo">To do List {task}</h1>
 
 			<div className="caja" style={{ width: "55%", margin: "auto" }}>
-				<div className="">
+				<form onSubmit={(e) => e.preventDefault()}>
 					<input
 						className="border border-0 caja   py-3 px-3 "
 						type="text"
 						placeholder="What needs to be done?"
 						onKeyUp={(evt) => handleTask(evt)}
+						value={task}
+						onChange={(e) => setTask(e.target.value)}
+
+
 					/>
-				</div>
+				</form>
 
 				{tasksList.map((item, index) => {
 					return (
@@ -49,7 +53,7 @@ const Home = () => {
 					);
 				})}
 				<div className="border-top px-4 py-3 m-0 ">
-					<span className="itm">{tasksList.length > 1 ? tasksList.length + " " + "Tasks left" : tasksList.length + " " + "Task left" }</span>
+					<span className="itm">{tasksList.length > 1 ? tasksList.length + " " + "Tasks left" : tasksList.length + " " + "Task left"}</span>
 				</div>
 			</div>
 		</>
